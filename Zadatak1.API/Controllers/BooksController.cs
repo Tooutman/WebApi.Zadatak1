@@ -25,14 +25,14 @@ namespace Zadatak1.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetMovies()
         {
-            return await _context.Movies.ToListAsync();
+            return await _context.Books.ToListAsync();
         }
 
         // GET: api/Books/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
-            var book = await _context.Movies.FindAsync(id);
+            var book = await _context.Books.FindAsync(id);
 
             if (book == null)
             {
@@ -78,7 +78,7 @@ namespace Zadatak1.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
-            _context.Movies.Add(book);
+            _context.Books.Add(book);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBook", new { id = book.Id }, book);
@@ -88,13 +88,13 @@ namespace Zadatak1.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {
-            var book = await _context.Movies.FindAsync(id);
+            var book = await _context.Books.FindAsync(id);
             if (book == null)
             {
                 return NotFound();
             }
 
-            _context.Movies.Remove(book);
+            _context.Books.Remove(book);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace Zadatak1.API.Controllers
 
         private bool BookExists(int id)
         {
-            return _context.Movies.Any(e => e.Id == id);
+            return _context.Books.Any(e => e.Id == id);
         }
     }
 }
