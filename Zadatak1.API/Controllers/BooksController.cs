@@ -7,32 +7,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Zadatak1.Data;
 using Zadatak1.Data.Entities;
+using Zadatak1.Data.Interfaces;
 
 namespace Zadatak1.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class BooksController(IBookRepository repository) : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public BooksController(AppDbContext context)
-        {
-            _context = context;
-        }
+        //public BooksController(AppDbContext context)
+        //{
+        //    _context = context;
+        //}
 
         // GET: api/Books
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Book>>> GetMovies()
         {
-            return await _context.Books.ToListAsync();
+            //return await _context.Books.ToListAsync();
+
+            return await repository.GetAllBooksAsync();
         }
 
         // GET: api/Books/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
-            var book = await _context.Books.FindAsync(id);
+            var book = await repository.GetBookByIdAsync(id);
 
             if (book == null)
             {
@@ -52,15 +55,16 @@ namespace Zadatak1.API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(book).State = EntityState.Modified;
+            //_context.Entry(book).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+
+                await repository.UpdateBookAsync(book);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(id))
+                if (!repository.BookExists(id))
                 {
                     return NotFound();
                 }
@@ -88,21 +92,19 @@ namespace Zadatak1.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {
-            var book = await _context.Books.FindAsync(id);
-            if (book == null)
+            if (!repository.BookExists(id))
             {
                 return NotFound();
             }
 
-            _context.Books.Remove(book);
-            await _context.SaveChangesAsync();
+            await repository.DeleteBookAsync(id);
 
             return NoContent();
         }
 
-        private bool BookExists(int id)
-        {
-            return _context.Books.Any(e => e.Id == id);
-        }
+        //private bool BookExists(int id)
+        //{
+        //    return _context.Books.Any(e => e.Id == id);
+        //}
     }
 }
