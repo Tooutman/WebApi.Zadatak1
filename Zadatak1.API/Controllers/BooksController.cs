@@ -15,7 +15,7 @@ namespace Zadatak1.API.Controllers
     [ApiController]
     public class BooksController(IBookRepository repository) : ControllerBase
     {
-        private readonly AppDbContext _context;
+        //private readonly AppDbContext _context;
 
         //public BooksController(AppDbContext context)
         //{
@@ -24,7 +24,7 @@ namespace Zadatak1.API.Controllers
 
         // GET: api/Books
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> GetMovies()
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
             //return await _context.Books.ToListAsync();
 
@@ -82,8 +82,10 @@ namespace Zadatak1.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
-            _context.Books.Add(book);
-            await _context.SaveChangesAsync();
+            //_context.Books.Add(book);
+            //await _context.SaveChangesAsync();
+
+           await  repository.AddBookAsync(book);
 
             return CreatedAtAction("GetBook", new { id = book.Id }, book);
         }

@@ -28,7 +28,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.UseSwagger(); //openApi specifikacija u json formatu
-    app.UseSwaggerUI(); //Vizalna reprenzentacija swagera
+    app.UseSwaggerUI(); //Vizualna reprezentacija swagera
 }
 
 app.UseHttpsRedirection();

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36401.2 d17.14
+VisualStudioVersion = 17.14.36401.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadatak1.API", "Zadatak1.API\Zadatak1.API.csproj", "{8F92AFFB-11E1-47F5-98BD-F1D44C30D288}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadatak1.Data", "Zadatak1.Data\Zadatak1.Data.csproj", "{C429E1A7-FE65-4EF5-A7F3-CEF0D92CA981}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zadatak1.UnitTests", "Zadatak1.UnitTests\Zadatak1.UnitTests.csproj", "{4991ADE7-6A8C-4415-8C31-5A551D2473CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C429E1A7-FE65-4EF5-A7F3-CEF0D92CA981}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C429E1A7-FE65-4EF5-A7F3-CEF0D92CA981}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C429E1A7-FE65-4EF5-A7F3-CEF0D92CA981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4991ADE7-6A8C-4415-8C31-5A551D2473CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4991ADE7-6A8C-4415-8C31-5A551D2473CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4991ADE7-6A8C-4415-8C31-5A551D2473CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4991ADE7-6A8C-4415-8C31-5A551D2473CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
